@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { JSX } from 'react'
 import Card from '../Card/Card'
 
 interface Props {}
 
-const CardList : React.FC<Props> = (props: Props) => {
+const CardList : React.FC<Props> = (
+    props: Props) : JSX.Element => {
   return (
     <div className="">
         <Card  companyName='Apple' ticker='AAPL' price={100} />
