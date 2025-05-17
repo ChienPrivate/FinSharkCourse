@@ -13,9 +13,14 @@ export const searchCompanies = async (query: string) => {
 
         return data;
     }
-    catch (error){
+    catch(error : unknown){
         if(axios.isAxiosError(error)){
-            console.log("error message: ", error.message)
+            console.log("error message: ", error.message);
+            return error.message;
+        }
+        else{
+            console.log("unexpected error: ",error);
+            return "An expected error has occured.";
         }
     }
-}
+};
