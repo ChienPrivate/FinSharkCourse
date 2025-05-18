@@ -1,5 +1,4 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import CardList from './Components/CardList/CardList';
 import Search from './Components/Search/Search';
@@ -11,12 +10,18 @@ function App() {
   const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
   const [serverError, setServerError] = useState<string>("");
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    console.log(e);
+    // console.log(e);
   };
 
-  const onClick = async (e: SyntheticEvent) => {
+  const onPortfolioCreate = (e: SyntheticEvent) => {
+    e.preventDefault();
+    console.log(e);
+  }
+
+  const onSearchSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
     const result = await searchCompanies(search);
 
     if(typeof result === "string"){
@@ -30,9 +35,11 @@ function App() {
 
   return (
     <div className="App">
-      <Search onClick={onClick} search={search} handleChange={handleChange} />
+      <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange} />
+      <CardList 
+      searchResults={searchResult} 
+      onPortfolioCreate={onPortfolioCreate}/>
       {serverError && <h1>{serverError}</h1>}
-      <CardList/>
     </div>
   );
 }
