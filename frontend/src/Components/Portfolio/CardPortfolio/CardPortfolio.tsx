@@ -10,7 +10,9 @@ const CardPortfolio = ({ portfolioValue, onPortfolioDelete }: Props) => {
   return (
     <>
         <h4>{portfolioValue}</h4>
-        <DeletePortfolio />
+        <DeletePortfolio 
+            onPortfolioDelete={onPortfolioDelete} 
+            portfolioValue={portfolioValue} />
     </>
   )
 }
