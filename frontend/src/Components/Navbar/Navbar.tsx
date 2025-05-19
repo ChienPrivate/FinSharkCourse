@@ -16,7 +16,7 @@ const Navbar = (props: Props) => {
           </Link>
           <div className="hidden font-bold lg:flex">
             <Link to="/search" className="text-black hover:text-darkBlue">
-              Dashboard
+              Search
             </Link>
           </div>
         </div>

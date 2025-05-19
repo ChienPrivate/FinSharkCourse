@@ -48,8 +48,7 @@ const SearchPage = (props: Props) => {
     console.log(searchResult);
   };
   return (
-    <div className="App">
-    
+  <div className="App">
     <Search 
       onSearchSubmit={onSearchSubmit} 
       search={search} 
