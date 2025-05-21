@@ -16,7 +16,6 @@ const SearchPage = (props: Props) => {
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    // console.log(e);
   };
 
   const onPortfolioCreate = (e: any) => {
@@ -45,7 +44,6 @@ const SearchPage = (props: Props) => {
     else if(Array.isArray(result.data)){
       setSearchResult(result.data);
     }
-    console.log(searchResult);
   };
   return (
   <div className="App">
