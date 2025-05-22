@@ -1,6 +1,5 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
 import { searchCompanies } from '../../api';
-import Navbar from '../../Components/Navbar/Navbar';
 import Search from '../../Components/Search/Search';
 import ListPortfolio from '../../Components/Portfolio/ListPortfolio/ListPortfolio';
 import CardList from '../../Components/CardList/CardList';

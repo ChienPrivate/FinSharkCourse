@@ -1,7 +1,4 @@
 import React from 'react'
-import { testIncomeStatementData } from './TestData'
-
-const data = testIncomeStatementData;
 
 type Props = {
     config : any;

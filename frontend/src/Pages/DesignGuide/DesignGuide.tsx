@@ -2,7 +2,6 @@ import React from 'react'
 import RatioList from '../../Components/RatioList/RatioList'
 import Table from '../../Components/Table/Table'
 import { testIncomeStatementData } from '../../Components/Table/TestData'
-import { config } from 'dotenv'
 
 type Props = {}
 
