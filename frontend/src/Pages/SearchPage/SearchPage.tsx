@@ -56,7 +56,7 @@ const SearchPage = (props: Props) => {
     <CardList 
       searchResults={searchResult} 
       onPortfolioCreate={onPortfolioCreate}/>
-    {serverError && <h1>{serverError}</h1>}
+      {serverError && <h1>{serverError}</h1>}
   </div>
   )
 }
