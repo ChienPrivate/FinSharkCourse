@@ -23,8 +23,6 @@ const CompFinder = ({ticker}: Props) => {
               err.response?.data?.['Error Message'] ||
               err.message ||
               'Lỗi không xác định';
-      
-            console.log('Lỗi API:', apiErrorMessage);
             setError(new Error(apiErrorMessage));
             setCompanyData(undefined);
           }
@@ -34,7 +32,7 @@ const CompFinder = ({ticker}: Props) => {
       }, [ticker]);
   return (
     <div className='inline-flex rounded-md shadow-sm m-4'>
-        { companyData ? (companyData?.peersList.map((tiker) => { return <CompFinderItem ticker={tiker} />; })) : ( <ErrorBox message={error} error={error} /> ) }
+        { companyData ? (companyData?.peersList.map((tiker) => { return <CompFinderItem ticker={tiker} />; })) : ( <ErrorBox /> ) }
     </div>
   )
 }
