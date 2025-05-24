@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Dtos.Stock;
+using api.Mappers;
 using api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,9 +25,10 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var stock = await _context.Stocks.ToListAsync();
+            var stocks = (await _context.Stocks.ToListAsync())
+            .Select(s => s.ToStockDto());
 
-            return Ok(stock);
+            return Ok(stocks);
         }
 
         [HttpGet("{id}")]
@@ -37,17 +40,17 @@ namespace api.Controllers
             {
                 return NotFound();
             }
-            return Ok(stock);
+            return Ok(stock.ToStockDto());
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddStock([FromBody] Stock stock)
+        public async Task<IActionResult> AddStock([FromBody] StockDto stock)
         {
             if (stock is null)
             {
                 return BadRequest();
             }
-            await _context.Stocks.AddAsync(stock);
+            await _context.Stocks.AddAsync(stock.ToStock());
             await _context.SaveChangesAsync();
 
             return Ok(new
