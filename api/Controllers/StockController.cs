@@ -7,6 +7,7 @@ using api.Dtos.Stock;
 using api.Mappers;
 using api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
@@ -61,6 +62,46 @@ namespace api.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto requestDto)
+        {
+            var stockModel = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (stockModel is null)
+            {
+                return NotFound();
+            }
+
+            stockModel.Symbol = requestDto.Symbol;
+            stockModel.CompanyName = requestDto.CompanyName;
+            stockModel.Purchase = requestDto.Purchase;
+            stockModel.LastDiv = requestDto.LastDiv;
+            stockModel.Industry = requestDto.Industry;
+            stockModel.MarketCap = requestDto.MarketCap;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(stockModel.ToStockDto());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var stockModel = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (stockModel is null)
+            {
+                return NotFound();
+            }
+
+            _context.Stocks.Remove(stockModel);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }
