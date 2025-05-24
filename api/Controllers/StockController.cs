@@ -17,9 +17,13 @@ namespace api.Controllers
     {
 
         private readonly ApplicationDbContext _context;
-        public StockController(ApplicationDbContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public StockController(ApplicationDbContext context,
+            IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -44,20 +48,19 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddStock([FromBody] StockDto stock)
+        public async Task<IActionResult> Create([FromBody] CreateStockRequestDto requestDto)
         {
-            if (stock is null)
+            if (requestDto is null)
             {
                 return BadRequest();
             }
-            await _context.Stocks.AddAsync(stock.ToStock());
+
+            var stockModel = requestDto.ToStockFromCreateDto();
+
+            await _context.Stocks.AddAsync(stockModel);
             await _context.SaveChangesAsync();
 
-            return Ok(new
-            {
-                message = "Stock is added successfully",
-                data = stock
-            });
+            return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
         }
     }
 }
