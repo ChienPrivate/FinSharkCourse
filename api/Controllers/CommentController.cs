@@ -63,9 +63,9 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] CreateCommentDto commentDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentRequestDto commentDto)
         {
-            var updateComment = await _commentRepo.UpdateAsync(id, commentDto.ToCommentFromCreate(id));
+            var updateComment = await _commentRepo.UpdateAsync(id, commentDto.ToCommentFromUpdate());
 
             return updateComment is null ? NotFound("Comment does not exist") : Ok(updateComment?.ToCommentDto());
         }
