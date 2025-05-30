@@ -6,8 +6,8 @@ using api.Models;
 
 namespace api.Interfaces
 {
-    public interface ITokenService
+    public interface IPortfolioRepository
     {
-        Task<string> CreateTokenAsync(AppUser appUser);
+        Task<List<Stock>> GetUserPortFolio(AppUser appUser);
     }
 }
