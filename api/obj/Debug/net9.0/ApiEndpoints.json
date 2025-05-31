@@ -126,6 +126,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "api.Controllers.PortfolioController",
+    "Method": "AddPortfolio",
+    "RelativePath": "api/portfolio",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "symbol",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api.Controllers.PortfolioController",
+    "Method": "DeletePortfolio",
+    "RelativePath": "api/portfolio",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "symbol",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "api.Controllers.StockController",
     "Method": "GetAll",
     "RelativePath": "api/stock",
