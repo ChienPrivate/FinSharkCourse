@@ -19,13 +19,16 @@ namespace api.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IStockRepository _stockRepo;
         private readonly IPortfolioRepository _portfolioRepo;
+        private readonly IFMPService _fmpService;
         public PortfolioController(UserManager<AppUser> userManager,
         IStockRepository stockRepo,
-        IPortfolioRepository portfolio)
+        IPortfolioRepository portfolio,
+        IFMPService fmpService)
         {
             _userManager = userManager;
             _stockRepo = stockRepo;
             _portfolioRepo = portfolio;
+            _fmpService = fmpService;
         }
 
         [HttpGet]
@@ -43,11 +46,24 @@ namespace api.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> AddPortfolio(string symbol)
+        public async Task<IActionResult> Create(string symbol)
         {
             var username = User.GetUserName();
             var appUser = await _userManager.FindByNameAsync(username);
             var stock = await _stockRepo.GetBySymbolAsync(symbol);
+
+            if (stock is null)
+            {
+                stock = await _fmpService.FindStockBySymbolAsync(symbol);
+                if (stock is null)
+                {
+                    return BadRequest("Stock does not exists");
+                }
+                else
+                {
+                    await _stockRepo.CreateAsync(stock);
+                }
+            }
 
             if (stock is null)
                 return BadRequest();
@@ -69,15 +85,15 @@ namespace api.Controllers
                 return StatusCode(500, "Could not create");
             else
             {
-                var baseUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
-                var locationUrl = $"{baseUrl}/api/portfolios/{symbol}";
+                string baseUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
+                string locationUrl = $"{baseUrl}/api/portfolios/{symbol}";
                 return Created(locationUrl, portfolioModel);
-            }    
+            }
         }
 
         [HttpDelete]
         [Authorize]
-        public async Task<IActionResult> DeletePortfolio(string symbol)
+        public async Task<IActionResult> Delete(string symbol)
         {
             var username = User.GetUserName();
 
@@ -87,7 +103,7 @@ namespace api.Controllers
 
             var filterStock = userPortfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower()).ToList();
 
-            if(filterStock.Count() is 1)
+            if (filterStock.Count() is 1)
             {
                 await _portfolioRepo.DeleteAsync(user, symbol);
             }

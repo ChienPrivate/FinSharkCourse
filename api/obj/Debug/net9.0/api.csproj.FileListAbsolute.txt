@@ -177,4 +177,3 @@ D:\Test\FinShark\api\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDeriv
 D:\Test\FinShark\api\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\Test\FinShark\api\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
 D:\Test\FinShark\api\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
-D:\Test\FinShark\api\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

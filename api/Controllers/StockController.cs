@@ -28,12 +28,11 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
-            var stocks = (await _stockRepo.GetAllAsync(query)).Select(s => s.ToStockDto());
+            var stocksDto = (await _stockRepo.GetAllAsync(query)).Select(s => s.ToStockDto()).ToList();
 
-            return Ok(stocks);
+            return Ok(stocksDto);
         }
 
         [HttpGet("{id:int}")]
