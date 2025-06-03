@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Helpers;
 using api.Interfaces;
 using api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -39,9 +40,21 @@ namespace api.Repository
             return commentExisting;
         }
 
-        public async Task<List<Comment>> GetAllAsync()
+        public async Task<List<Comment>> GetAllAsync(CommentQuerryObject querryObject)
         {
-            return await _context.Comments.Include(c => c.AppUser).ToListAsync();
+            var comments = _context.Comments.Include(c => c.AppUser).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(querryObject.Symbol))
+            {
+                comments = comments.Where(s => s.Stock.Symbol == querryObject.Symbol);
+            }
+
+            if (querryObject.IsDescending is true)
+            {
+                comments = comments.OrderByDescending(c => c.CreatedOn);
+            }
+
+            return await comments.ToListAsync();
         }
 
         public async Task<Comment?> GetByIdAsync(int id)

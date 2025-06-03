@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Test\\FinShark\\api\\api.csproj": {}
+    "D:\\Test\\FinShark\\api\\api.csproj": {}
   },
   "projects": {
-    "d:\\Test\\FinShark\\api\\api.csproj": {
+    "D:\\Test\\FinShark\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Test\\FinShark\\api\\api.csproj",
+        "projectUniqueName": "D:\\Test\\FinShark\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "d:\\Test\\FinShark\\api\\api.csproj",
+        "projectPath": "D:\\Test\\FinShark\\api\\api.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "d:\\Test\\FinShark\\api\\obj\\",
+        "outputPath": "D:\\Test\\FinShark\\api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
