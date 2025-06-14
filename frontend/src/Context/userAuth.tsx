@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { loginAPI, registerAPI } from "../Service/AuthService";
 import { toast } from "react-toastify";
 import React from "react";
+import axios from "axios";
 
 type UserContextType = {
     user: UserProfile | null;
@@ -32,6 +33,7 @@ export const UserProvider = ({children} : Props) => {
         {
             setToken(JSON.parse(user));
             setToken(token);
+            axios.defaults.headers.common["Authorization"] = "Bearer " + token;
         }
         setIsReady(true);
     }, []);
