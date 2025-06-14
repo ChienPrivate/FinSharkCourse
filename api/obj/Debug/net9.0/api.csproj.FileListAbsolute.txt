@@ -177,3 +177,5 @@ D:\Test\FinShark\api\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDeriv
 D:\Test\FinShark\api\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\Test\FinShark\api\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
 D:\Test\FinShark\api\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Test\FinShark\api\bin\Debug\net9.0\Npgsql.dll
+D:\Test\FinShark\api\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
