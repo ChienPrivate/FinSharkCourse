@@ -38,7 +38,7 @@ export const UserProvider = ({children} : Props) => {
         setIsReady(true);
     }, []);
 
-    const registerUser = async (username: string, email: string, password: string) => {
+    const registerUser = async (email: string, username: string, password: string) => {
         await registerAPI(email,username,password).then((res) => {
             if(res)
             {
