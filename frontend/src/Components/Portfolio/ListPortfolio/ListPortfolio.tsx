@@ -1,4 +1,6 @@
-import React, { SyntheticEvent } from 'react'
+import React, { SyntheticEvent } from 'react';
+import { block } from 'million/react';
+import type { FC } from 'react';
 import CardPortfolio from '../CardPortfolio/CardPortfolio';
 
 interface Props {
@@ -34,4 +36,6 @@ const ListPortfolio = ({portfolioValues, onPortfolioDelete}: Props) => {
   )
 }
 
-export default ListPortfolio
+const BlockedListPortfolio = block(ListPortfolio) as FC<Props>;
+
+export default BlockedListPortfolio;

@@ -79,7 +79,7 @@ namespace api.Controllers
 
             var commentModel = createCommentDto.ToCommentFromCreate(stock.Id);
 
-            commentModel.AppUserId = appUser.Id;
+            commentModel.AppUserId = appUser!.Id;
 
             await _commentRepo.CreateAsync(commentModel);
 

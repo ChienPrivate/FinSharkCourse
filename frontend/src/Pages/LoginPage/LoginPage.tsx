@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as Yup from "yup";
@@ -17,6 +17,9 @@ const validation = Yup.object().shape({
 });
 
 const LoginPage = (props: Props) => {
+    useEffect(() => {
+        document.title = "Login - FinShark";
+    }, []);
     const { loginUser } = useAuth();
     const { register, handleSubmit, formState: { errors }
     } = useForm<LoginFormInputs>({ resolver: yupResolver(validation)})
@@ -30,7 +33,7 @@ const LoginPage = (props: Props) => {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mb-20 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Sign in to your account
+              Login to your account
             </h1>
             <form className="space-y-4 md:space-y-6" 
             onSubmit={handleSubmit(handleLogin)}>
@@ -101,12 +104,12 @@ const LoginPage = (props: Props) => {
                  focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 
                  text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
-                Sign in
+                Login
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?{" "}
                 <a
-                  href="#"
+                  href="/register"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Sign up

@@ -1,6 +1,7 @@
 import React from 'react'
 import hero from './hero.png'
 import { Link } from 'react-router-dom'
+import { BsStarFill } from "react-icons/bs";
 
 interface Props {}
 
@@ -21,7 +22,7 @@ const Hero = (props: Props) => {
               to={`/search`}
               className="py-5 px-10 text-2xl font-bold text-white bg-lightGreen rounded lg:py-4 hover:opacity-70"
             >
-              Get Started
+              Get Started <BsStarFill className="inline-block ml-1 mb-1" />
             </Link>
           </div>
         </div>

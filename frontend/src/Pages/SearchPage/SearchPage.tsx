@@ -1,13 +1,18 @@
-import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
+import React, { ChangeEvent, SyntheticEvent, useState, useEffect } from 'react'
 import { searchCompanies } from '../../api';
 import Search from '../../Components/Search/Search';
-import ListPortfolio from '../../Components/Portfolio/ListPortfolio/ListPortfolio';
+import BlockedListPortfolio from '../../Components/Portfolio/ListPortfolio/ListPortfolio';
 import CardList from '../../Components/CardList/CardList';
 import { CompanySearch } from '../../company';
 
 interface Props {}
 
 const SearchPage = (props: Props) => {
+
+  useEffect(() => {
+    document.title = "Search - FinShark";
+  }, []);
+
   const [search, setSearch] = useState<string>("");
   const [portfolioValues, setPortfolioValues] = useState<string[]>([]); 
   const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
@@ -37,10 +42,9 @@ const SearchPage = (props: Props) => {
     e.preventDefault();
     const result = await searchCompanies(search);
 
-    if(typeof result === "string"){
+    if (typeof result === "string") {
       setServerError(result);
-    }
-    else if(Array.isArray(result.data)){
+    } else if (Array.isArray(result.data)) {
       setSearchResult(result.data);
     }
   };
@@ -50,7 +54,7 @@ const SearchPage = (props: Props) => {
       onSearchSubmit={onSearchSubmit} 
       search={search} 
       handleSearchChange={handleSearchChange} />
-    <ListPortfolio 
+    <BlockedListPortfolio 
       portfolioValues={portfolioValues} 
       onPortfolioDelete={onPortfolioDelete} />
     <CardList 

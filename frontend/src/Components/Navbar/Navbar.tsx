@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from './logo.png'
 import { Link } from 'react-router-dom'
+import { BsSearch } from "react-icons/bs";
 
 interface Props {
 
@@ -14,24 +15,27 @@ const Navbar = (props: Props) => {
           <Link to="/">
             <img src={logo} alt="" />
           </Link>
-          <div className="hidden font-bold lg:flex">
-            <Link to="/search" className="text-black hover:text-darkBlue">
-              Search
+            <div className="hidden font-bold lg:flex flex-row items-center space-x-2">
+            <Link to="/search" className="text-black hover:text-darkBlue flex items-center space-x-2">
+              <span>Search</span>
+              <BsSearch />
             </Link>
-          </div>
+            </div>
         </div>
         <div className="hidden lg:flex items-center space-x-6 text-back">
-          <div className="hover:text-darkBlue">Login</div>
-          <a
-            href=""
+          <Link to="/login" className="hover:text-darkBlue">
+            Login
+          </Link>
+          <Link
+            to="/register"
             className="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
           >
             Signup
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
 export default Navbar

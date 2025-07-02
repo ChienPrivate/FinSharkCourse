@@ -59,7 +59,9 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = builder.Configuration["JWT:Audience"],
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
-            System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SignInKey"])
+            System.Text.Encoding.UTF8.GetBytes(
+                builder.Configuration["JWT:SignInKey"] ?? throw new InvalidOperationException("JWT:SignInKey is not configured.")
+            )
         )
     };
 });

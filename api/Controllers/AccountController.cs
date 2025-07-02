@@ -34,7 +34,7 @@ namespace api.Controllers
                 return BadRequest();
 
 
-            var normalizedUserName = loginDto.UserName.ToUpper();
+            var normalizedUserName = loginDto.UserName?.ToUpper();
 
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.NormalizedUserName == normalizedUserName);
 
