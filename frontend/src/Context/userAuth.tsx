@@ -80,7 +80,6 @@ export const UserProvider = ({children} : Props) => {
     };
 
     const isLoggedIn = () => {
-        console.log(user);
         return !!user;
     }
 

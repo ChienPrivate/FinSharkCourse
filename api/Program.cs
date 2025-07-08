@@ -28,7 +28,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-    // options.UseNpgsql(builder.Configuration.GetConnectionString("PostreSQLConnection"));
+    // options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL"));
 });
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -91,6 +91,12 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
+
+// builder.Services.AddScoped<Supabase.Client>(_ =>
+// new Supabase.Client(
+//     builder.Configuration["Supabase:Url"],
+//     builder.Configuration["Supabase:Key"]
+// ));
 
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
